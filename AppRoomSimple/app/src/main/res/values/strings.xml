@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">My_First_App</string>
+    <string name="hint_first_name">Saisir votre prenom</string>
+    <string name="hint_last_name">Saisir votre nom</string>
+    <string name="birth_date">Date de Naissance</string>
+    <string name="sex">Sexe</string>
+    <string name="main_title">Page de Connexion </string>
+    <string name="home_title">Accueil</string>
+    <string name="logon_title">Creation de compte</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>
