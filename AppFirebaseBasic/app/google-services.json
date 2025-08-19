@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "743284177001",
+    "project_id": "appbasique",
+    "storage_bucket": "appbasique.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:743284177001:android:6c2b191a8c585b3d088af8",
+        "android_client_info": {
+          "package_name": "com.nextstepviews.firebasebasique"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-m_cW963P_aZGMSCy9deKT-a8kgpCLiI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
