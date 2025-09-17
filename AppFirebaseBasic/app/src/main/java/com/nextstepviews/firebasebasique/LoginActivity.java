@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -15,28 +16,34 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class MainActivity extends AppCompatActivity {
-    FirebaseAuth auth;
+public class LoginActivity extends AppCompatActivity {
 
+    FirebaseAuth auth;
     EditText txtEmail, txtPassword;
 
+    TextView tvRegister;
     Button btnConnect;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_login);
 
         auth = FirebaseAuth.getInstance();
+        txtEmail = findViewById(R.id.txtEmailAddressLogin);
+        txtPassword = findViewById(R.id.txtPasswordLogin);
 
-        txtEmail = findViewById(R.id.txtEmailAddress);
-        txtPassword = findViewById(R.id.txtPassword);
+        btnConnect = findViewById(R.id.btnConnect1);
 
-        btnConnect = findViewById(R.id.btnConnect);
+        tvRegister = findViewById(R.id.tvSinscrire);
 
-        btnConnect.setOnClickListener(view -> registerNewUser());
+        tvRegister.setOnClickListener(v -> {
+            startActivity( new Intent(LoginActivity.this, MainActivity.class));
+        });
+
+        btnConnect.setOnClickListener(v -> loginUserAccount());
     }
 
-    private void registerNewUser() {
+    private void loginUserAccount() {
         String email = txtEmail.getText().toString().trim();
         String password = txtPassword.getText().toString().trim();
 
@@ -46,19 +53,15 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
-        // Register
-        auth.createUserWithEmailAndPassword(email,password)
+        auth.signInWithEmailAndPassword(email,password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
-                            Toast.makeText(MainActivity.this, "Registration successful!", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(MainActivity.this, HomeActivity.class));
-                        }
-                        else {
-                            // Registration failed
-                            Toast.makeText(MainActivity.this, "Registration failed! Please try again later", Toast.LENGTH_LONG).show();
-
+                            Toast.makeText(LoginActivity.this, "Successful Login", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+                        }else {
+                            Toast.makeText(LoginActivity.this, "Login Failed", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
