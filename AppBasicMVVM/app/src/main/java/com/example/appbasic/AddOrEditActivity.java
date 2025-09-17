@@ -42,8 +42,8 @@ public class AddOrEditActivity extends AppCompatActivity {
         int userId = intent.getIntExtra("item",-1);
 
         if (userId != -1){
-            userViewModel.setSingleUser(userId);
-            userViewModel.getSingleUser().observe(this, new Observer<User>() {
+            //userViewModel.setSingleUser(userId);
+            userViewModel.getSingleUser(userId).observe(this, new Observer<User>() {
                 @Override
                 public void onChanged(User user) {
                     txtname.setText(user.getNom());
@@ -78,16 +78,18 @@ public class AddOrEditActivity extends AppCompatActivity {
         });
 
         btn_add.setOnClickListener(view -> {
+
+            String firstname = txtname.getText().toString();
+            String lastname = txtname2.getText().toString();
+            String email = txtemail.getText().toString();
             if(userId == -1) {
-                String firstname = txtname.getText().toString();
-                String lastname = txtname2.getText().toString();
-                String email = txtemail.getText().toString();
 
                 User newUser = new User(firstname, lastname, email, R.drawable.datepicture);
                     userViewModel.insertUsers(newUser);
 
             }else {
-                userViewModel.deleteUser(userToEdit);
+                User newUser = new User(userId,firstname, lastname, email, R.drawable.datepicture);
+                userViewModel.deleteUser(newUser);
             }
 
             Intent intent1 = new Intent(this,HomeActivity.class);

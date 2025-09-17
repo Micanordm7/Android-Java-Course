@@ -106,8 +106,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
                     builder.setMessage("Voulez-vous vraiment supprimer "+listeUser.get(position).getNom()+" "+listeUser.get(position).getPrenom());
                     builder.setCancelable(false);
                     builder.setPositiveButton("Yes", (dialogInterface, i) -> {
-                        listeUser.remove(position);
-                        notifyDataSetChanged();
+
                     });
                     builder.setNegativeButton("No", (dialogInterface, i) ->
                             dialogInterface.dismiss());

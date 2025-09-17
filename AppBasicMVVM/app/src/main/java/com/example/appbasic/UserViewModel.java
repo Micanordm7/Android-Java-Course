@@ -5,6 +5,7 @@ import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 
 import java.util.List;
 
@@ -16,15 +17,16 @@ public class UserViewModel extends AndroidViewModel {
     private LiveData<User> singleUser;
 
 
-    public LiveData<User> getSingleUser() {
+    public LiveData<User> getSingleUser(int userId) {
+        singleUser = userRepository.getSingleUser(userId);
         return singleUser;
     }
 
-    public void setSingleUser(int userId) {
-        if(singleUser == null){
-            singleUser = userRepository.getSingleUser(userId);
-        }
-    }
+//    public void setSingleUser(int userId) {
+//        if(singleUser == null){
+//            singleUser = userRepository.getSingleUser(userId);
+//        }
+//    }
     public UserViewModel(@NonNull Application application) {
         super(application);
 

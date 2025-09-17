@@ -3,6 +3,7 @@ package com.example.appbasic;
 import android.app.Application;
 
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 
 import java.util.List;
 import java.util.concurrent.Executor;
@@ -34,7 +35,7 @@ public class UserRepository {
     public void insertUsers(User user){
         executor.execute(() -> userDao.insertAll(user));
     }
-  
+
     public void deleteUser(User user){
         executor.execute(() -> userDao.deleteUser(user));
     }
